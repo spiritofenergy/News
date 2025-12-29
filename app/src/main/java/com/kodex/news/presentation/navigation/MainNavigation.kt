@@ -5,10 +5,9 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.kodex.news.presentation.screen.LoginScreen
-import com.kodex.news.presentation.screen.MainScreen
-import com.kodex.news.presentation.screen.RegisterScreen
-import kotlinx.coroutines.flow.combine
+import com.kodex.news.presentation.screen.login.LoginScreen
+import com.kodex.news.presentation.screen.main.MainScreen
+import com.kodex.news.presentation.screen.register.RegisterScreen
 import kotlinx.serialization.Serializable
 
 sealed class Screen {

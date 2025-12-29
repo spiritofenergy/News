@@ -1,6 +1,6 @@
-package com.kodex.news.presentation.screen.state
+package com.kodex.news.presentation.screen.register
 
-import com.kodex.news.util.Result
+import com.kodex.news.domain.util.Result
 
 sealed class RegisterScreenEvent{
     data class UsernameUpdate(val newUsername: String): RegisterScreenEvent()

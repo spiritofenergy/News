@@ -1,4 +1,4 @@
-package com.kodex.news.ui.component
+package com.kodex.news.presentation.ui.component
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
