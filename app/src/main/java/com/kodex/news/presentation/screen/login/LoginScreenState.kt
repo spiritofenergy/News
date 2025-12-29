@@ -1,6 +1,6 @@
-package com.kodex.news.presentation.screen.state
+package com.kodex.news.presentation.screen.login
 
-import com.kodex.news.util.Result
+import com.kodex.news.domain.util.Result
 
 sealed class LoginScreenEvent{
     data class EmailUpdate(val newEmail: String): LoginScreenEvent()

@@ -1,4 +1,4 @@
-package com.kodex.news.ui.theme
+package com.kodex.news.presentation.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

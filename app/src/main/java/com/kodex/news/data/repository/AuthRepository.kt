@@ -3,7 +3,7 @@ package com.kodex.news.data.repository
 import com.kodex.news.domain.dao.UserDao
 import com.kodex.news.domain.entity.User
 import javax.inject.Inject
-import com.kodex.news.util.Result
+import com.kodex.news.domain.util.Result
 import java.util.UUID
 
 class AuthRepository @Inject constructor(

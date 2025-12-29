@@ -1,8 +1,7 @@
-package com.kodex.news.presentation.screen
+package com.kodex.news.presentation.screen.register
 
 import android.widget.Toast
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -18,41 +17,37 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.LinkAnnotation
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.kodex.news.R
 import com.kodex.news.presentation.navigation.Screen
-import com.kodex.news.presentation.screen.state.RegisterScreenEvent
-import com.kodex.news.presentation.screen.state.RegisterScreenState
-import com.kodex.news.presentation.screen.viewmodel.LoginScreenViewModel
-import com.kodex.news.presentation.screen.viewmodel.RegisterScreenViewModel
-import com.kodex.news.ui.component.StyleButton
-import com.kodex.news.util.Result
-import dagger.hilt.android.lifecycle.HiltViewModel
+import com.kodex.news.presentation.ui.component.StyleButton
+import com.kodex.news.domain.util.Result
 
 @Composable
 fun RegisterScreen(
     onNavigateTo: (Screen) -> Unit = {},
 ) {
     val viewModel = hiltViewModel<RegisterScreenViewModel>()
+    val state by viewModel.state.collectAsStateWithLifecycle()
+
     val context = LocalContext.current
-    LaunchedEffect(viewModel.state.registerResult) {
-        viewModel.state.registerResult?.let { registerResult ->
+    LaunchedEffect(state.registerResult) {
+        state.registerResult?.let { registerResult ->
             when(registerResult){
-                is com.kodex.news.util.Result.Success<*> -> {
+                is Result.Success<*> -> {
                     onNavigateTo(Screen.Main)
                 }
                 is Result.Failure<*> -> {
@@ -63,7 +58,7 @@ fun RegisterScreen(
 
     }
     RegisterView(
-        state = viewModel.state,
+        state = state,
         onEvent = viewModel::onEvent,
         onNavigateTo
     )

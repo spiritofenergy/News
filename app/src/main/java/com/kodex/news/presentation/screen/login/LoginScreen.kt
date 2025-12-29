@@ -1,4 +1,4 @@
-package com.kodex.news.presentation.screen
+package com.kodex.news.presentation.screen.login
 
 import android.widget.Toast
 import androidx.compose.foundation.Image
@@ -6,7 +6,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -17,6 +16,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -30,24 +30,22 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.kodex.news.R
 import com.kodex.news.presentation.navigation.Screen
-import com.kodex.news.presentation.screen.state.LoginScreenEvent
-import com.kodex.news.presentation.screen.state.LoginScreenState
-import com.kodex.news.presentation.screen.state.RegisterScreenEvent
-import com.kodex.news.presentation.screen.viewmodel.LoginScreenViewModel
-import com.kodex.news.ui.component.StyleButton
-import com.kodex.news.util.Result
+import com.kodex.news.presentation.ui.component.StyleButton
+import com.kodex.news.domain.util.Result
 
 @Composable
 fun LoginScreen(
     onNavigateTo: (Screen) -> Unit = {},
 ) {
     val viewModel = hiltViewModel<LoginScreenViewModel>()
+    val state by viewModel.state.collectAsStateWithLifecycle()
+
     val context = LocalContext.current
-    LaunchedEffect(viewModel.state.loginResult) {
-        viewModel.state.loginResult?.let { loginResult ->
+    LaunchedEffect(state.loginResult) {
+        state.loginResult?.let { loginResult ->
             when(loginResult){
                 is Result.Success<*> -> {
                     onNavigateTo(Screen.Main)
@@ -60,7 +58,7 @@ fun LoginScreen(
 
     }
     LoginView (
-            state = viewModel.state,
+            state = state,
         onEvent = viewModel::onEvent,
         onNavigateTo = onNavigateTo
     )
@@ -73,7 +71,8 @@ fun LoginScreen(
     ){
         Column(
             modifier = Modifier
-                .fillMaxSize(),
+                .fillMaxSize()
+                .padding(40.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
@@ -134,7 +133,7 @@ fun LoginScreen(
             }
             Text(text = stringResource(id = R.string.no_account_register),
                 fontSize = 18.sp,
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
                     .padding(top = 28.dp)
                     .clickable{
                         onNavigateTo(Screen.Register)

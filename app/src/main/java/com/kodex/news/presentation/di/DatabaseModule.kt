@@ -1,4 +1,4 @@
-package com.kodex.news.di
+package com.kodex.news.presentation.di
 
 import android.content.Context
 import androidx.room.Room
