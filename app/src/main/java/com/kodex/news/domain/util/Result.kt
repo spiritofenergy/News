@@ -1,4 +1,4 @@
-package com.kodex.news.util
+package com.kodex.news.domain.util
 
 sealed interface Result {
     data class Success<T>(val msg: String = "", val data: T? = null): Result
