@@ -4,9 +4,11 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
-    alias(libs.plugins.kdp)
+    alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
-    kotlin("plugin.serialization")
+    alias(libs.plugins.kotlin.serialization)
+
+
 
 }
 
@@ -63,6 +65,8 @@ dependencies {
     implementation(libs.retrofit)
    // implementation(libs.retrofit.converter)
     implementation(libs.okhttp)
+    implementation(libs.coil.compouse)
+    implementation(libs.kotlin.datetime      )
 
     implementation(libs.kotlinx.serialization)
     implementation(libs.androidx.navigation.compose)
@@ -76,6 +80,7 @@ dependencies {
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.material.icons.extended)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
