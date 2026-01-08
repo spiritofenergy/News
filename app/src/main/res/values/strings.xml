@@ -10,4 +10,6 @@
 
     <string name="feed">Лента</string>
     <string name="profile">Профиль</string>
+    <string name="read">Читать</string>
+    <string name="search">Поиск по новостям</string>
 </resources>
