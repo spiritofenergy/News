@@ -20,9 +20,6 @@ fun StyleButton(
         modifier = modifier,
         onClick = onClick,
         shape = RoundedCornerShape(15.dp),
-        colors = ButtonDefaults.buttonColors(
-            containerColor = Color.Black
-        )
 
     ) {
         Box(
