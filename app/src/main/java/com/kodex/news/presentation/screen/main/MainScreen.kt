@@ -34,7 +34,9 @@ fun MainScreen(
 
         ) {
             composable <MainScreenNavigationRoute.Feed>{
-                FeedScreen()
+                FeedScreen(navigate = {destination ->
+                    navController.navigate(destination)
+                })
             }
             composable <MainScreenNavigationRoute.Profile>{
                 ProfileScreen()
