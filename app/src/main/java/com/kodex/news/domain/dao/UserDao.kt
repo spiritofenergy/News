@@ -9,14 +9,14 @@ import com.kodex.news.domain.entity.User
 @Dao
 interface UserDao {
     @Insert
-    fun addUser(user: User)
+    suspend fun addUser(user: User)
 
     @Delete
-    fun deleteUser(user: User)
+   suspend fun deleteUser(user: User)
 
     @Query("SELECT * FROM user WHERE email=:email")
-    fun getUserByEmail(email: String): User?
+   suspend fun getUserByEmail(email: String): User?
 
     @Query("SELECT * FROM user WHERE email=:email and password=:password")
-    fun login(email: String, password: String): User?
+   suspend fun login(email: String, password: String): User?
 }
